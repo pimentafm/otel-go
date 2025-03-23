@@ -1,0 +1,18 @@
+### Service A
+POST http://localhost:8080/weather
+Content-Type: application/json
+
+{
+  "cep": "35780000"
+}
+
+### Service B - GET weather by CEP
+GET http://localhost:8081/weather/35780000
+
+### Service B - POST weather
+POST http://localhost:8081/weather
+Content-Type: application/json
+
+{
+  "cep": "35780000"
+}

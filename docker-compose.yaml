@@ -18,7 +18,7 @@ services:
     ports:
       - "8081:8081"
     environment:
-      - WEATHER_API_KEY=dc4cb83478744f7ab8b202703250603
+      - WEATHER_API_KEY=b4f74835750f41c0bfe24936250801
       - ZIPKIN_URL=http://zipkin:9411/api/v2/spans
       - PORT=8081
     depends_on:
