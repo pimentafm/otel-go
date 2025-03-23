@@ -54,8 +54,8 @@ func LoadConfig() Config {
 	return Config{
 		Port:        getEnv("PORT", "8080"),
 		ZipkinURL:   getEnv("ZIPKIN_URL", "http://zipkin:9411/api/v2/spans"),
-		ServiceBURL: getEnv("SERVICE_B_URL", "http://service-b:8081/weather"),
-		ServiceName: getEnv("SERVICE_NAME", "service-a"),
+		ServiceBURL: getEnv("SERVICE_B_URL", "http://svc-b:8081/weather"),
+		ServiceName: getEnv("SERVICE_NAME", "svc-a"),
 		Timeout:     time.Duration(getEnvAsInt("TIMEOUT_SECONDS", 10)) * time.Second,
 	}
 }

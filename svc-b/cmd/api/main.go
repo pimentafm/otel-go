@@ -18,13 +18,13 @@ import (
 	"go.opentelemetry.io/otel/propagation"
 	"go.opentelemetry.io/otel/sdk/resource"
 	sdktrace "go.opentelemetry.io/otel/sdk/trace"
-	semconv "go.opentelemetry.io/semconv/v1.17.0"
+	semconv "go.opentelemetry.io/otel/semconv/v1.17.0"
 )
 
 const (
 	defaultPort      = "8081"
 	defaultZipkinURL = "http://zipkin:9411/api/v2/spans"
-	serviceName      = "service-b"
+	serviceName      = "svc-b"
 )
 
 func initTracer() (*sdktrace.TracerProvider, error) {
@@ -58,7 +58,7 @@ func initTracer() (*sdktrace.TracerProvider, error) {
 
 func main() {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
-	log.SetPrefix("[SERVICE-B] ")
+	log.SetPrefix("[SVC-B] ")
 
 	// Initialize the tracer
 	tp, err := initTracer()

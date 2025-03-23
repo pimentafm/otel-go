@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  svc-a:
+    build: ./svc-a
+    ports:
+      - "8080:8080"
+    environment:
+      - SERVICE_B_URL=http://svc-b:8081/weather
+      - ZIPKIN_URL=http://zipkin:9411/api/v2/spans
+      - PORT=8080
+    depends_on:
+      - svc-b
+      - zipkin
+
+  svc-b:
+    build: ./svc-b
+    ports:
+      - "8081:8081"
+    environment:
+      - WEATHER_API_KEY=dc4cb83478744f7ab8b202703250603
+      - ZIPKIN_URL=http://zipkin:9411/api/v2/spans
+      - PORT=8081
+    depends_on:
+      - zipkin
+
+  otel-collector:
+    image: otel/opentelemetry-collector:latest
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    ports:
+      - "4317:4317"  # OTLP gRPC
+      - "4318:4318"  # OTLP HTTP
+    depends_on:
+      - zipkin
+
+  zipkin:
+    image: openzipkin/zipkin:latest
+    ports:
+      - "9411:9411"

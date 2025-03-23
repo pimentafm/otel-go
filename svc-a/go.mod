@@ -1,4 +1,4 @@
-module github.com/pimentafm/otel-go.git
+module svc-a
 
 go 1.23.7
 
